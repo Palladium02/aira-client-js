@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,7 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from "node-fetch";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AiraClient = void 0;
+const node_fetch_1 = require("node-fetch");
 class AiraClient {
     constructor(options) {
         this.token = "";
@@ -33,22 +36,22 @@ class AiraClient {
     }
     find(table, query) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (yield fetch(`${this.host}/api/db/find`, this.getFetchInit(table, "query", query))).json();
+            return yield (yield node_fetch_1.default(`${this.host}/api/db/find`, this.getFetchInit(table, "query", query))).json();
         });
     }
     findOne(table, query) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (yield fetch(`${this.host}/api/db/findOne`, this.getFetchInit(table, "query", query))).json();
+            return yield (yield node_fetch_1.default(`${this.host}/api/db/findOne`, this.getFetchInit(table, "query", query))).json();
         });
     }
     insert(table, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (yield fetch(`${this.host}/api/db/insert`, this.getFetchInit(table, "data", data))).json();
+            return yield (yield node_fetch_1.default(`${this.host}/api/db/insert`, this.getFetchInit(table, "data", data))).json();
         });
     }
     update(table, query, update) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (yield fetch(`${this.host}/api/db/update`, {
+            return yield (yield node_fetch_1.default(`${this.host}/api/db/update`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,12 +67,12 @@ class AiraClient {
     }
     deleteEntry(table, query) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (yield fetch(`${this.host}/api/db/deleteEntry`, this.getFetchInit(table, "query", query))).json();
+            return yield (yield node_fetch_1.default(`${this.host}/api/db/deleteEntry`, this.getFetchInit(table, "query", query))).json();
         });
     }
     dropTable(table) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (yield fetch(`${this.host}/${this.email}/db/dropTable`, {
+            return yield (yield node_fetch_1.default(`${this.host}/${this.email}/db/dropTable`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,4 +88,4 @@ class AiraClient {
         console.log(this.token);
     }
 }
-export { AiraClient };
+exports.AiraClient = AiraClient;
